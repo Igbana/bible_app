@@ -9,14 +9,12 @@ class VerseNoteTray extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BibleService controller = Get.find();
-    PrefController prefController = Get.find();
-    prefController.initController();
     TextEditingController noteController = TextEditingController();
     if (controller.isloading.value) {
       return const CircularProgressIndicator();
     } else {
-      prefController.getNote(ref: controller.reference);
-      noteController.text = prefController.note.value;
+      // prefController.getNote(ref: controller.reference);
+      // noteController.text = prefController.note.value;
       return BottomSheet(
         onClosing: () {},
         builder: (_) => SizedBox(
@@ -87,10 +85,10 @@ class VerseNoteTray extends StatelessWidget {
                 const SizedBox(height: 8),
                 GestureDetector(
                   onTap: () {
-                    prefController.addNote(
-                      ref: controller.reference,
-                      note: noteController.text,
-                    );
+                    // prefController.addNote(
+                    //   ref: controller.reference,
+                    //   note: noteController.text,
+                    // );
                     Navigator.of(context).pop();
                   },
                   child: Container(
