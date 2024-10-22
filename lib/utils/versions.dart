@@ -9,6 +9,7 @@ const List<Version> versions = [
   Version("esv", "English Standard Version", "ESV"),
   // Version("geneva", "Geneva Bible", "GVB"),
   Version("kjvs", "King James Version [Strongs]", "KJVs"),
+  Version("net", "New English Translation", "NET"),
   // Version("tyndale", "Tyndale Bible", "TYN"),
   Version("web", "World English Bible", "WEB"),
 ];
