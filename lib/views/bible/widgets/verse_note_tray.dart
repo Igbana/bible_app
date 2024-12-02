@@ -9,12 +9,16 @@ class VerseNoteTray extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BibleService controller = Get.find();
+    PrefService pref = Get.find();
     TextEditingController noteController = TextEditingController();
     if (controller.isloading.value) {
       return const CircularProgressIndicator();
     } else {
-      // prefController.getNote(ref: controller.reference);
-      // noteController.text = prefController.note.value;
+      noteController.text = pref.getNote(BibleReference(
+        book: controller.reference.book,
+        chapter: controller.reference.chapter,
+        startVerse: verse.id,
+      ));
       return BottomSheet(
         onClosing: () {},
         builder: (_) => SizedBox(
@@ -71,6 +75,14 @@ class VerseNoteTray extends StatelessWidget {
                       maxLines: null,
                       expands: true,
                       controller: noteController,
+                      onChanged: (val) => pref.addNote(
+                        BibleReference(
+                          book: controller.reference.book,
+                          chapter: controller.reference.chapter,
+                          startVerse: verse.id,
+                        ),
+                        val,
+                      ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.all(12),
@@ -84,13 +96,7 @@ class VerseNoteTray extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 GestureDetector(
-                  onTap: () {
-                    // prefController.addNote(
-                    //   ref: controller.reference,
-                    //   note: noteController.text,
-                    // );
-                    Navigator.of(context).pop();
-                  },
+                  onTap: () => Navigator.of(context).pop(),
                   child: Container(
                     padding: const EdgeInsets.all(12.0),
                     decoration: BoxDecoration(

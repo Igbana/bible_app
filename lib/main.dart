@@ -2,7 +2,7 @@ import 'imports.dart';
 
 void main() {
   initControllers();
-  Get.find<BibleService>().loadBible();
+  // Get.find<BibleService>().loadBible();
   runApp(
     MaterialApp(
       theme: ThemeData().copyWith(primaryColor: Colors.blue),

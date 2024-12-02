@@ -36,4 +36,6 @@ class BibleReference {
       endVerse: endVerseId,
     );
   }
+
+  String toText() => "${book.name()} $chapter : $startVerse";
 }

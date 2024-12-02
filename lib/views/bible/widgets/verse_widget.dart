@@ -1,4 +1,4 @@
-import 'package:bible_app/models/models.dart';
+import 'package:bible_app/imports.dart';
 import 'widgets.dart';
 
 class VerseWidget extends StatefulWidget {
@@ -16,6 +16,8 @@ class VerseWidget extends StatefulWidget {
 class _VerseWidgetState extends State<VerseWidget> {
   @override
   Widget build(BuildContext context) {
+    BibleService controller = Get.find();
+    PrefService pref = Get.find();
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -31,7 +33,9 @@ class _VerseWidgetState extends State<VerseWidget> {
           builder: (_) {
             return VerseNoteTray(verse: widget.verse);
           },
-        );
+        ).then((_) {
+          setState(() {});
+        });
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4.0),
@@ -60,6 +64,18 @@ class _VerseWidgetState extends State<VerseWidget> {
                       )
                     : null,
               ),
+              if (pref.hasNote(
+                BibleReference(
+                  book: controller.reference.book,
+                  chapter: controller.reference.chapter,
+                  startVerse: widget.verse.id,
+                ),
+              ))
+                const WidgetSpan(
+                  child: Icon(
+                    Icons.textsms_outlined,
+                  ),
+                )
             ],
           ),
         ),
