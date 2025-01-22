@@ -1,13 +1,7 @@
-import 'package:bible_app/imports.dart';
 import 'widgets/widgets.dart';
 
 class BibleView extends StatefulWidget {
-  const BibleView({
-    super.key,
-    // this.passage,
-  });
-
-  // final BibleReference? passage;
+  const BibleView({super.key});
 
   @override
   State<BibleView> createState() => _BibleViewState();

@@ -42,6 +42,7 @@ class SearchView extends GetView<BibleService> {
                                     chapter: ref.chapter,
                                   );
                                   Navigator.of(context).pop();
+                                  controller.reference = ref;
                                 },
                                 child: VerseWidget(ref: ref),
                               ),
