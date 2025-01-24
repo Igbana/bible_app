@@ -71,6 +71,7 @@ class BibleService extends GetxController {
 
     isloading.value = false;
     isChanged.value = true;
+    update();
     return Verse(id: verse, text: verseText);
   }
 

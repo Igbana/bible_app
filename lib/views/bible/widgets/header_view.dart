@@ -17,15 +17,9 @@ class HeaderView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 10),
           child: IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => SearchView(),
-                ),
-              );
-            },
+            onPressed: () {},
             icon: const Icon(
-              Icons.search,
+              Icons.bookmark,
               size: 28,
             ),
           ),
