@@ -1,8 +1,8 @@
-import 'package:bible_app/views/views.dart';
 import 'widgets.dart';
 
 class HeaderView extends StatelessWidget {
-  const HeaderView({super.key});
+  const HeaderView({super.key, required this.goHome});
+  final VoidCallback goHome;
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +11,10 @@ class HeaderView extends StatelessWidget {
       centerTitle: true,
       floating: true,
       title: const BibleNavigation(),
-      leading:
-          IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back_ios)),
+      leading: IconButton(
+        onPressed: goHome,
+        icon: const Icon(Icons.arrow_back_ios),
+      ),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 10),

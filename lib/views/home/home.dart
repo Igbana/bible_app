@@ -1,7 +1,9 @@
 import 'package:bible_app/imports.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  const HomeView({super.key, required this.showDevotional});
+
+  final VoidCallback showDevotional;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,10 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  const DevotionalWidget(),
+                  GestureDetector(
+                    onTap: () => showDevotional(),
+                    child: const DevotionalWidget(),
+                  ),
                   const SizedBox(height: 24),
                   const HorizontalScrollWidget(title: "Study Plans"),
                   const SizedBox(height: 24),
@@ -220,78 +225,93 @@ class VerseOfDayWidget extends GetView<BibleService> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.grey,
-      ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                "Verse of the day",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const VerseOfDay();
+            },
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.grey,
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Hero(
+                  tag: "verse_title",
+                  child: Text(
+                    "Verse of the day",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.ios_share),
+                )
+              ],
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white30,
+                borderRadius: BorderRadius.circular(12),
+                image: const DecorationImage(
+                  image: AssetImage("assets/img.jpg"),
+                  fit: BoxFit.cover,
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.ios_share),
-              )
-            ],
-          ),
-          const SizedBox(height: 12),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white30,
-              borderRadius: BorderRadius.circular(12),
-              image: const DecorationImage(
-                image: AssetImage("assets/img.jpg"),
-                fit: BoxFit.cover,
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Obx(() {
+                  if (controller.isloading.value) {
+                    return const VerseSkeleton();
+                  } else {
+                    Verse verse = controller.getVerse(
+                      book: ref.book,
+                      chapter: ref.chapter,
+                      verse: ref.startVerse,
+                    );
+                    return Column(
+                      children: [
+                        Text(
+                          verse.text,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          "${ref.book.name()} ${ref.chapter}:${ref.startVerse}",
+                          style: const TextStyle(
+                            // color: Colors.black,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                }),
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Obx(() {
-                if (controller.isloading.value) {
-                  return const VerseSkeleton();
-                } else {
-                  Verse verse = controller.getVerse(
-                    book: ref.book,
-                    chapter: ref.chapter,
-                    verse: ref.startVerse,
-                  );
-                  return Column(
-                    children: [
-                      Text(
-                        verse.text,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 24,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        "${ref.book.name()} ${ref.chapter}:${ref.startVerse}",
-                        style: const TextStyle(
-                          // color: Colors.black,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  );
-                }
-              }),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

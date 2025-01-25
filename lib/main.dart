@@ -6,7 +6,6 @@ import 'imports.dart';
 
 void main() {
   initControllers();
-  Get.find<BibleService>().loadBible();
   runApp(
     const MaterialApp(
       home: SafeArea(
@@ -31,10 +30,26 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: switch (_currentIndex) {
-        0 => const HomeView(),
-        1 => const DevotionalView(),
-        2 => const BibleView(),
-        3 => const ProfileView(),
+        0 => HomeView(showDevotional: () {
+            setState(() {
+              _currentIndex = 1;
+            });
+          }),
+        1 => DevotionalView(goHome: () {
+            setState(() {
+              _currentIndex = 0;
+            });
+          }),
+        2 => BibleView(goHome: () {
+            setState(() {
+              _currentIndex = 0;
+            });
+          }),
+        3 => ProfileView(goHome: () {
+            setState(() {
+              _currentIndex = 0;
+            });
+          }),
         _ => null,
       },
       floatingActionButton: _currentIndex == 0

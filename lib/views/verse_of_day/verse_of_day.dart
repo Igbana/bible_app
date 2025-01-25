@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class VerseOfDay extends StatelessWidget {
   const VerseOfDay({super.key});
@@ -12,13 +13,22 @@ class VerseOfDay extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
             icon: const Icon(Icons.arrow_back_ios),
           ),
-          title: const Text(
-            "Verse of the day",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
+          title: const Hero(
+            tag: "verse_title",
+            child: Text(
+              "Verse of the day",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.share),
+            )
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -29,6 +39,16 @@ class VerseOfDay extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24),
                     color: Colors.grey,
+                  ),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Transform.rotate(
+                        angle: pi / 6,
+                        child: const Icon(Icons.push_pin_rounded),
+                      ),
+                    ),
                   ),
                 ),
               ),

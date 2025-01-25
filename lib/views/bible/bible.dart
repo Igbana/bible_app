@@ -1,7 +1,8 @@
 import 'widgets/widgets.dart';
 
 class BibleView extends StatefulWidget {
-  const BibleView({super.key});
+  const BibleView({super.key, required this.goHome});
+  final VoidCallback goHome;
 
   @override
   State<BibleView> createState() => _BibleViewState();
@@ -15,9 +16,9 @@ class _BibleViewState extends State<BibleView> {
       padding: const EdgeInsets.only(top: 8.0),
       child: CustomScrollView(
         controller: _scrollController,
-        slivers: const [
-          HeaderView(),
-          ReaderView(),
+        slivers: [
+          HeaderView(goHome: widget.goHome),
+          const ReaderView(),
         ],
       ),
     );

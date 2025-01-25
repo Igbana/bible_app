@@ -1,8 +1,8 @@
 import 'package:bible_app/imports.dart';
-import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+  const ProfileView({super.key, required this.goHome});
+  final VoidCallback goHome;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class ProfileView extends StatelessWidget {
           AppBar(
             title: const Text("Profile"),
             leading: IconButton(
-              onPressed: () {},
+              onPressed: goHome,
               icon: const Icon(Icons.arrow_back_ios),
             ),
           ),

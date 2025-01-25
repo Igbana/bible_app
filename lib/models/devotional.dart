@@ -17,27 +17,24 @@ String devotionsToJson(List<Devotional> data) {
 }
 
 class Devotional {
+  Devotional({
+    this.id,
+    required this.date,
+    required this.title,
+    required this.translation,
+    required this.memoryVerse,
+    required this.memoryVersePassage,
+    required this.fullPassage,
+    required this.fullText,
+    required this.bibleInAYear,
+    required this.image,
+    required this.prayerBurden,
+    required this.thoughtOfTheDay,
+  });
+
   int? id;
   String date, translation, title, memoryVerse, memoryVersePassage, fullPassage;
   String fullText, bibleInAYear, image, prayerBurden, thoughtOfTheDay;
-  String memoryVerseImageToShare, thoughtOfTheDayImageToShare, prayerBurdenImageToShare;
-
-  Devotional(
-      {this.id,
-      required this.date,
-      required this.title,
-      required this.translation,
-      required this.memoryVerse,
-      required this.memoryVersePassage,
-      required this.fullPassage,
-      required this.fullText,
-      required this.bibleInAYear,
-      required this.image,
-      required this.prayerBurden,
-      required this.thoughtOfTheDay,
-      required this.memoryVerseImageToShare,
-      required this.thoughtOfTheDayImageToShare,
-      required this.prayerBurdenImageToShare});
 
   Map<String, dynamic> toMap() {
     return {
@@ -53,15 +50,12 @@ class Devotional {
       'image': image,
       'prayerBurden': prayerBurden,
       'thoughtOfTheDay': thoughtOfTheDay,
-      'memoryVerseImageToShare': memoryVerseImageToShare,
-      'thoughtOfTheDayImageToShare': thoughtOfTheDayImageToShare,
-      'prayerBurdenImageToShare': prayerBurdenImageToShare,
     };
   }
 
   @override
   String toString() {
-    return 'DevotionalModel{int: $id, date: $date, translation: $translation, title: $title, memoryVerse: $memoryVerse, memoryVersePassage: $memoryVersePassage, fullPassage: $fullPassage, fullText: $fullText, bibleInAYear: $bibleInAYear, image: $image, prayerBurden: $prayerBurden, thoughtOfTheDay: $thoughtOfTheDay, memoryVerseImageToShare: $memoryVerseImageToShare, thoughtOfTheDayImageToShare: $thoughtOfTheDayImageToShare, prayerBurdenImageToShare: $prayerBurdenImageToShare,}';
+    return 'DevotionalModel{int: $id, date: $date, translation: $translation, title: $title, memoryVerse: $memoryVerse, memoryVersePassage: $memoryVersePassage, fullPassage: $fullPassage, fullText: $fullText, bibleInAYear: $bibleInAYear, image: $image, prayerBurden: $prayerBurden, thoughtOfTheDay: $thoughtOfTheDay,}';
   }
 
   factory Devotional.fromJson(Map<String, dynamic> json) {
@@ -77,9 +71,6 @@ class Devotional {
       image: json['image'] ?? '',
       prayerBurden: json['prayerBurden'] ?? '',
       thoughtOfTheDay: json['thoughtOfTheDay'] ?? '',
-      memoryVerseImageToShare: json['memoryVerseImageToShare'] ?? '',
-      thoughtOfTheDayImageToShare: json['thoughtOfTheDayImageToShare'] ?? '',
-      prayerBurdenImageToShare: json['prayerBurdenImageToShare'] ?? '',
     );
   }
 }
