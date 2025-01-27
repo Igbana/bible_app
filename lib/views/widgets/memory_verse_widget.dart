@@ -10,7 +10,6 @@ class MemoryVerseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // BibleService controller = Get.find();
     return Container(
       padding: const EdgeInsets.only(
         left: 8,
