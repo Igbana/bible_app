@@ -1,4 +1,5 @@
 import 'package:bible_app/imports.dart';
+import 'package:bible_app/models/devotional.dart';
 import 'package:http/http.dart' as http;
 
 class DevotionService extends GetxController {
@@ -14,11 +15,14 @@ class DevotionService extends GetxController {
     );
     if (response.statusCode == 200) {
       _data.value = await json.decode(response.body);
+      print(_data);
+    } else {
+      debugPrint("ERRORRRRRR");
     }
     isloading.value = false;
   }
 
-  void devotionToday() {
+  Devotional devotionToday() {
     isloading.value = true;
     String dateToday =
         "${DateTime.now().day}.${DateTime.now().year}.${DateTime.now().year}";
@@ -28,5 +32,6 @@ class DevotionService extends GetxController {
       }
     }
     isloading.value = false;
+    return Devotional.fromJson(devotionData);
   }
 }

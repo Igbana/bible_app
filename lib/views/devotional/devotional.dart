@@ -1,5 +1,6 @@
 import 'package:bible_app/controllers/devotion_service.dart';
 import 'package:bible_app/imports.dart';
+import 'package:bible_app/models/devotional.dart';
 import 'package:bible_app/views/widgets/memory_verse_widget.dart';
 
 class DevotionalView extends StatefulWidget {
@@ -63,6 +64,8 @@ class ReaderView extends GetView<DevotionService> {
 
   @override
   Widget build(BuildContext context) {
+    Devotional devotionToday = controller.devotionToday();
+    print(devotionToday);
     return SliverToBoxAdapter(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -70,21 +73,17 @@ class ReaderView extends GetView<DevotionService> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Monday, December 2, 2024",
+              devotionToday.date,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 16),
-            Obx(
-              (){
-                if (controller.isloading.value){
-
-                }else{
-                  return Text(controller.devotionData);
-                }
-                
+            Obx(() {
+              if (controller.isloading.value) {
+                return CircularProgressIndicator();
+              } else {
+                return Text(devotionToday.title);
               }
-            ),
-            
+            }),
             MemoryVerseWidget(
               ref: BibleReference(
                 book: Book(id: 1),

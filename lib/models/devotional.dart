@@ -58,7 +58,7 @@ class Devotional {
     return 'DevotionalModel{int: $id, date: $date, translation: $translation, title: $title, memoryVerse: $memoryVerse, memoryVersePassage: $memoryVersePassage, fullPassage: $fullPassage, fullText: $fullText, bibleInAYear: $bibleInAYear, image: $image, prayerBurden: $prayerBurden, thoughtOfTheDay: $thoughtOfTheDay,}';
   }
 
-  factory Devotional.fromJson(Map<String, dynamic> json) {
+  factory Devotional.fromJson(Map<dynamic, dynamic> json) {
     return Devotional(
       date: json['date'] ?? '',
       title: json['title'] ?? '',
