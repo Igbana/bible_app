@@ -1,5 +1,4 @@
 import 'package:bible_app/imports.dart';
-import 'package:bible_app/views/widgets/search_box.dart';
 
 class UserManual extends GetView<BibleService> {
   const UserManual({super.key});
