@@ -1,0 +1,1 @@
+export 'starwidget.dart';

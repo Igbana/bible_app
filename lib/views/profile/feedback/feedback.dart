@@ -1,4 +1,5 @@
 import 'package:bible_app/imports.dart';
+import 'widgets/widgets.dart';
 
 class FeedbackScreen extends GetView<BibleService> {
   const FeedbackScreen({super.key});
@@ -14,36 +15,12 @@ class FeedbackScreen extends GetView<BibleService> {
         title: const Text("Feedback"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Spacer(flex: 1),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(
-                  Icons.star,
-                  size: 36,
-                ),
-                Icon(
-                  Icons.star,
-                  size: 36,
-                ),
-                Icon(
-                  Icons.star,
-                  size: 36,
-                ),
-                Icon(
-                  Icons.star,
-                  size: 36,
-                ),
-                Icon(
-                  Icons.star,
-                  size: 36,
-                ),
-              ],
-            ),
+            const Spacer(flex: 1),
+            StarWidget(onChanged: (value) {}),
             const SizedBox(height: 36),
             Container(
               padding: const EdgeInsets.all(12),
@@ -53,7 +30,7 @@ class FeedbackScreen extends GetView<BibleService> {
                 ),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: TextField(
+              child: const TextField(
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: "Write a feedback",
@@ -62,8 +39,11 @@ class FeedbackScreen extends GetView<BibleService> {
               ),
             ),
             const SizedBox(height: 24),
-            ElevatedButton(onPressed: () {}, child: Text("Submit Feedback")),
-            Spacer(flex: 3),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text("Submit Feedback"),
+            ),
+            const Spacer(flex: 3),
           ],
         ),
       ),
