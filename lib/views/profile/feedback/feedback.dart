@@ -11,18 +11,59 @@ class FeedbackScreen extends GetView<BibleService> {
           onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.arrow_back_ios),
         ),
-        title: const Text("User Manual"),
+        title: const Text("Feedback"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 32),
+            Spacer(flex: 1),
             Row(
-              children: [Icon(Icons.star)],
-            )
-            
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Icon(
+                  Icons.star,
+                  size: 36,
+                ),
+                Icon(
+                  Icons.star,
+                  size: 36,
+                ),
+                Icon(
+                  Icons.star,
+                  size: 36,
+                ),
+                Icon(
+                  Icons.star,
+                  size: 36,
+                ),
+                Icon(
+                  Icons.star,
+                  size: 36,
+                ),
+              ],
+            ),
+            const SizedBox(height: 36),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Write a feedback",
+                ),
+                maxLines: 6,
+              ),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(onPressed: () {}, child: Text("Submit Feedback")),
+            Spacer(flex: 3),
           ],
         ),
       ),
