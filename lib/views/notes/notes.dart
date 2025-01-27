@@ -8,7 +8,6 @@ class NoteView extends StatefulWidget {
 }
 
 class _NoteView extends State<NoteView> {
-  final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(

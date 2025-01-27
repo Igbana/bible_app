@@ -1,4 +1,5 @@
 import 'package:bible_app/views/profile/saved_notes/saved_notes.dart';
+import 'package:bible_app/views/profile/user_manual/user_manual.dart';
 
 enum PageIndex { home, devotional, bible, profile }
 
@@ -9,5 +10,5 @@ const Map profileItems = {
   'Settings': SavedNotes(),
   'About Us': SavedNotes(),
   'Feedback': SavedNotes(),
-  'User Manual': SavedNotes(),
+  'User Manual': UserManual(),
 };
