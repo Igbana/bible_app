@@ -1,7 +1,7 @@
 import 'package:bible_app/imports.dart';
 
-class AboutUs extends GetView<BibleService> {
-  const AboutUs({super.key});
+class AboutUsScreen extends GetView<BibleService> {
+  const AboutUsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

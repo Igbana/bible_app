@@ -1,8 +1,8 @@
 import 'package:bible_app/imports.dart';
 import 'package:bible_app/views/widgets/search_box.dart';
 
-class SavedNotes extends GetView<BibleService> {
-  const SavedNotes({super.key});
+class SavedNotesScreen extends GetView<BibleService> {
+  const SavedNotesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
