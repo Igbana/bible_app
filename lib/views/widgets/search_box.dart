@@ -1,5 +1,5 @@
 import 'package:bible_app/controllers/controllers.dart';
-import 'widgets.dart';
+import '../bible/search/widgets/widgets.dart';
 
 class SearchBox extends GetView<BibleService> {
   const SearchBox({
