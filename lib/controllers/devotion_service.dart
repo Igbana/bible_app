@@ -11,11 +11,11 @@ class DevotionService extends GetxController {
   void loadDevotions() async {
     isloading.value = true;
     final response = await http.get(
-      Uri.parse("https://cpai.guidetryb.com/api/devotionals?month=January2025"),
-    );
-    if (response.statusCode == 200) {
+        Uri.parse(
+            "https://cpai.guidetryb.com/api/devotionals?month=January2025"),
+        headers: {'Accept': 'application/json; charset=utf-8'});
+    if (response.statusCode.toString()[0] == "2") {
       _data.value = await json.decode(response.body);
-      print(_data);
     } else {
       debugPrint("ERRORRRRRR");
     }
@@ -24,10 +24,10 @@ class DevotionService extends GetxController {
 
   Devotional devotionToday() {
     isloading.value = true;
-    String dateToday =
-        "${DateTime.now().day}.${DateTime.now().year}.${DateTime.now().year}";
+    String date = DateTime.now().toString().split(" ")[0];
+    String dateFormatted = date.split("-").reversed.join(".");
     for (Map devotional in _data) {
-      if (devotional["date"] == dateToday) {
+      if (devotional["date"] == dateFormatted) {
         devotionData.value = devotional['updateMap'];
       }
     }

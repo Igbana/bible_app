@@ -81,7 +81,8 @@ class ReaderView extends GetView<DevotionService> {
               if (controller.isloading.value) {
                 return CircularProgressIndicator();
               } else {
-                return Text(devotionToday.title);
+                print(devotionToday.title);
+                return Text((devotionToday.title));
               }
             }),
             MemoryVerseWidget(
