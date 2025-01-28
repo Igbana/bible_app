@@ -133,11 +133,19 @@ class ReaderView extends GetView<DevotionService> {
             const SizedBox(height: 24),
             DevotionSubHeaders(
               title: "Bible in a Year",
-              text: devotionToday.bibleInAYear
-                  .replaceAll("[", "")
-                  .replaceAll("]", "")
-                  .replaceAll('"', "")
-                  .replaceAll(",", ", "),
+              child: Row(
+                children: [
+                  for (String text in devotionToday.bibleInAYear
+                      .replaceAll("[", "")
+                      .replaceAll("]", "")
+                      .replaceAll('"', "")
+                      .split(","))
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text("$text, "),
+                    ),
+                ],
+              ),
             ),
             const SizedBox(height: 24),
           ],
