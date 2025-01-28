@@ -6,40 +6,55 @@ class FeedBackTray extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      const TrayHeader(),
-      Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            StarWidget(onChanged: (value) {}),
-            const SizedBox(height: 36),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey,
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Write a feedback",
-                ),
-                maxLines: 6,
-              ),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text("Submit Feedback"),
-            ),
-          ],
+    return Container(
+      padding: const EdgeInsets.all(12.0),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
         ),
       ),
-    ]);
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const TrayHeader(),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                StarWidget(onChanged: (value) {}),
+                const SizedBox(height: 36),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Write a feedback",
+                    ),
+                    maxLines: 6,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("Submit Feedback"),
+          ),
+        ],
+      ),
+    );
   }
 }
 

@@ -28,16 +28,22 @@ class ProfileView extends StatelessWidget {
                 ProfileItem(
                   label: profileItems.keys.toList()[index],
                   onTap: () {
-                    
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return profileItems[
-                              profileItems.keys.toList()[index]];
-                        },
-                      ),
-                    );
+                    profileItems.keys.toList()[index] == "Feedback"
+                        ? showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return profileItems[
+                                  profileItems.keys.toList()[index]];
+                            })
+                        : Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return profileItems[
+                                    profileItems.keys.toList()[index]];
+                              },
+                            ),
+                          );
                   },
                 ),
                 const SizedBox(height: 12),
