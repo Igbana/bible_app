@@ -1,12 +1,10 @@
 import 'package:bible_app/imports.dart';
 
-class MemoryVerseWidget extends StatelessWidget {
-  const MemoryVerseWidget({
-    super.key,
-    required this.ref,
-  });
+class DevotionSubHeaders extends StatelessWidget {
+  const DevotionSubHeaders(
+      {super.key, required this.title, required this.text});
 
-  final BibleReference ref;
+  final String title, text;
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +27,14 @@ class MemoryVerseWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            "${ref.book.name()} ${ref.chapter}:${ref.startVerse}",
+            title,
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w800,
             ),
           ),
           Text(
-            "ref.",
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
+            text,
             style:
                 TextStyle(color: Colors.grey[700], fontWeight: FontWeight.w500),
           ),

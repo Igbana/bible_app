@@ -59,16 +59,27 @@ class HeaderView extends StatelessWidget {
   }
 }
 
+// this.id,
+// === required this.date,
+// === required this.title,
+// === required this.memoryVerse,
+// === required this.memoryVersePassage,
+// required this.fullPassage,
+// required this.fullText,
+// required this.bibleInAYear,
+// required this.image,
+// required this.prayerBurden,
+// required this.thoughtOfTheDay,
+
 class ReaderView extends GetView<DevotionService> {
   const ReaderView({super.key});
 
   @override
   Widget build(BuildContext context) {
     Devotional devotionToday = controller.devotionToday();
-    print(devotionToday);
     return SliverToBoxAdapter(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -76,25 +87,59 @@ class ReaderView extends GetView<DevotionService> {
               devotionToday.date,
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Obx(() {
               if (controller.isloading.value) {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               } else {
-                print(devotionToday.title);
-                return Text((devotionToday.title));
+                return Text(
+                  devotionToday.title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                  ),
+                );
               }
             }),
-            MemoryVerseWidget(
-              ref: BibleReference(
-                book: Book(id: 1),
-                chapter: 1,
+            DevotionSubHeaders(
+                title: "Memory Verse",
+                text:
+                    "${devotionToday.memoryVerse}\n${devotionToday.memoryVersePassage}"),
+            const SizedBox(height: 24),
+            Obx(() {
+              if (controller.isloading.value) {
+                return const CircularProgressIndicator();
+              } else {
+                return Text(devotionToday.fullText);
+              }
+            }),
+            const SizedBox(height: 24),
+            const Text(
+              "Prayer Burden",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w800,
               ),
             ),
-            SizedBox(height: 24),
-            Text(
-              "sjfhjdfhjahdkjad",
+            Text(devotionToday.prayerBurden),
+            const SizedBox(height: 24),
+            DevotionSubHeaders(
+              title: "Thought of the day",
+              text: devotionToday.thoughtOfTheDay,
             ),
+            const SizedBox(height: 6),
+            const SizedBox(height: 24),
+            DevotionSubHeaders(
+              title: "Bible in a Year",
+              text: devotionToday.bibleInAYear
+                  .replaceAll("[", "")
+                  .replaceAll("]", "")
+                  .replaceAll('"', "")
+                  .replaceAll(",", ", "),
+            ),
+            const SizedBox(height: 24),
           ],
         ),
       ),
