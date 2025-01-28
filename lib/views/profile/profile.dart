@@ -28,6 +28,7 @@ class ProfileView extends StatelessWidget {
                 ProfileItem(
                   label: profileItems.keys.toList()[index],
                   onTap: () {
+                    
                     Navigator.push(
                       context,
                       MaterialPageRoute(

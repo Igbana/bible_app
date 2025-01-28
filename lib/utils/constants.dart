@@ -13,7 +13,7 @@ const Map profileItems = {
   'Saved Notes': SavedNotesScreen(),
   'Settings': SettingsPage(),
   'About Us': AboutUsScreen(),
-  'Feedback': FeedbackScreen(),
+  'Feedback': FeedBackTray(),
   'User Manual': UserManualScreen(),
 };
 
